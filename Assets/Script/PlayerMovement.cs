@@ -21,9 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveGapDistance = 1;
     Coroutine cWalkGap;
 
+    Animator animator;
+    SpriteRenderer sp;
+
     private void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
+        sp = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -35,9 +40,20 @@ public class PlayerMovement : MonoBehaviour
             //velocity = new Vector2(Mathf.CeilToInt(Input.GetAxis("AHorizontal")), Mathf.CeilToInt(Input.GetAxis("AVertical"))) * speed;
             if (cWalkGap == null)
             {
-                if (Input.GetKey(KeyCode.A)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(-1, 0) * moveGapDistance)); }
-                else if (Input.GetKey(KeyCode.D)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(1, 0) * moveGapDistance)); }
-                else if (Input.GetKey(KeyCode.W)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(0, 1) * moveGapDistance)); }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(-1, 0) * moveGapDistance));
+                    sp.flipX = false;
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(1, 0) * moveGapDistance));
+                    sp.flipX = true;
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(0, 1) * moveGapDistance));
+                }
                 else if (Input.GetKey(KeyCode.S)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(0, -1) * moveGapDistance)); }
             }
 
@@ -61,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     eShoot(ball.transform.position, dir.normalized);
                 }
+                animator.Play("Attack");
             }
         }
 
@@ -70,10 +87,19 @@ public class PlayerMovement : MonoBehaviour
             //velocity = new Vector2(Input.GetAxis("BHorizontal"), Input.GetAxis("BVertical")) * speed;
             if (cWalkGap == null)
             {
-                if (Input.GetKey(KeyCode.LeftArrow)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(-1, 0) * moveGapDistance)); }
-                else if (Input.GetKey(KeyCode.RightArrow)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(1, 0) * moveGapDistance)); }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(-1, 0) * moveGapDistance));
+                    sp.flipX = false;
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(1, 0) * moveGapDistance));
+                    sp.flipX = true;
+                }
                 else if (Input.GetKey(KeyCode.UpArrow)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(0, 1) * moveGapDistance)); }
                 else if (Input.GetKey(KeyCode.DownArrow)) { cWalkGap = StartCoroutine(WalkTo_Coro(new Vector2(0, -1) * moveGapDistance)); }
+
             }
             //續力
             if (Input.GetKey(KeyCode.M))
@@ -93,13 +119,20 @@ public class PlayerMovement : MonoBehaviour
                     Vector2 dir = ball.transform.position - gameObject.transform.position;
                     eShoot(ball.transform.position, dir.normalized);
                 }
+                animator.Play("Attack");
             }
         }
         rigid.velocity = velocity;
 
 
     }
-
+    private void FixedUpdate()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("move"))
+        {
+            animator.Play("Idle");
+        }
+    }
 
     public enum PlayerType
     {
@@ -110,18 +143,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WalkTo_Coro(Vector2 dir)
     {
         Vector2 goal_pos = (Vector2)transform.position + dir;
-        /*
-        while (Vector2.Distance((Vector2)transform.position, goal_pos) > 0.01f)
-        {
-            transform.position = new Vector2(
-                Mathf.Lerp(transform.position.x, goal_pos.x, speed * Time.deltaTime),
-                Mathf.Lerp(transform.position.x, goal_pos.x, speed * Time.deltaTime)
-            );
-            Debug.Log(goal_pos);
-            yield return new WaitForFixedUpdate();
-
-        }
-        */
+        animator.Play("Dash");
         transform.position = goal_pos;
         yield return new WaitForSeconds(walkGapTime);
         cWalkGap = null;
