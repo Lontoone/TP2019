@@ -565,7 +565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &787512007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,6 +645,8 @@ MonoBehaviour:
   ball: {fileID: 1044402307}
   poewerStoreSpeed: 5
   ringSize: 0.2
+  walkGapTime: 0.2
+  moveGapDistance: 1
 --- !u!212 &787512011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1211,6 +1213,8 @@ MonoBehaviour:
   ball: {fileID: 1947395137}
   poewerStoreSpeed: 5
   ringSize: 0.2
+  walkGapTime: 0.2
+  moveGapDistance: 2
 --- !u!212 &1750013172
 SpriteRenderer:
   m_ObjectHideFlags: 0
