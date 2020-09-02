@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    PlayerMovement pm;
+    PlayerMovement2 pm;
     public GameObject ball;
     public float shootSpeed = 5;
     //Rigidbody2D rigid;
     private void Start()
     {
-        pm = gameObject.GetComponent<PlayerMovement>();
+        pm = gameObject.GetComponent<PlayerMovement2>();
         pm.eShoot += Shoot;
     }
     private void OnDestroy()

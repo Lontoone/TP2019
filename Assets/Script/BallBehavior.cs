@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour
 {
+    public GameObject PS;
     Rigidbody2D rigid;
     Vector2 dir;
     public float reflectSpeed = 10;
@@ -29,6 +30,9 @@ public class BallBehavior : MonoBehaviour
         Debug.DrawLine(transform.position, (Vector2)transform.position + rigid.velocity, Color.gray, 1);
 
         HitableObj.Hit_event_c(collision.gameObject, damage);
+
+        GameObject effect=Instantiate(PS, transform.position, transform.rotation);
+        effect.transform.rotation= Quaternion.FromToRotation(effect.transform.up, inNormal) * transform.rotation;
     }
 
 
