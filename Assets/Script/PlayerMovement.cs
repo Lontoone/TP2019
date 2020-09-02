@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity = new Vector2(Input.GetAxis("BHorizontal"), Input.GetAxis("BVertical")) * speed;
             //續力
-            if (Input.GetKey(KeyCode.M))
+            if (Input.GetKey(KeyCode.L))
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize);
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
                 powerTime = Mathf.Clamp(powerTime -= Time.deltaTime, 0, 1);
             }
             //放手
-            if (Input.GetKeyUp(KeyCode.M))
+            if (Input.GetKeyUp(KeyCode.L))
             {
                 if (eShoot != null)
                 {
