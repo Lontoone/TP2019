@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Lean.Pool;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkGapTime = 0.2f;
     public float moveGapDistance = 1;
+    public GameObject chargeEffect;
+    GameObject ce;
+    bool isCharging = false;
+    public GameObject center;
     Coroutine cWalkGap;
 
     Animator animator;
@@ -61,7 +66,14 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
-                ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize);
+                ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+                if (!isCharging)
+                {
+                    isCharging = true;
+                    ce = Lean.Pool.LeanPool.Spawn(chargeEffect);
+                    ce.transform.position = center.transform.position;
+                    ce.transform.parent = transform;
+                }
             }
             else
             {
@@ -71,13 +83,17 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space))
             {
 
-                Vector2 dir = ball.transform.position - gameObject.transform.position;
+                Vector2 dir = ball.transform.position - center.transform.position;
                 Debug.DrawLine(ball.transform.position, dir * 10, Color.red, 1);
                 if (eShoot != null)
                 {
-                    eShoot(ball.transform.position, dir.normalized);
+                    eShoot(ball.transform.position, dir.normalized * powerTime);
+
                 }
                 animator.Play("Attack");
+                Lean.Pool.LeanPool.Despawn(ce);
+                isCharging = false;
+
             }
         }
 
@@ -105,7 +121,17 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.L))
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
-                ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize);
+
+                ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+                if (!isCharging)
+                {
+                    isCharging = true;
+                    ce = Lean.Pool.LeanPool.Spawn(chargeEffect);
+                    ce.transform.position = center.transform.position;
+                    ce.transform.parent = transform;
+                    Debug.Log("center" + center.transform.position);
+                    Debug.Log("P1" + transform.position);
+                }
             }
             else
             {
@@ -116,10 +142,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (eShoot != null)
                 {
-                    Vector2 dir = ball.transform.position - gameObject.transform.position;
+                    Vector2 dir = ball.transform.position - center.transform.position;
                     eShoot(ball.transform.position, dir.normalized);
                 }
                 animator.Play("Attack");
+                Lean.Pool.LeanPool.Despawn(ce);
+                isCharging = false;
             }
         }
         rigid.velocity = velocity;

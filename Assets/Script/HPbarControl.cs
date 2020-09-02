@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HPbarControl : MonoBehaviour
 {
+
+    public GameObject endCanvas;
     public UnityEngine.UI.Image HpBar;
     float MaxHP;
     HitableObj hitable;
+
+
     void Start()
     {
         hitable = gameObject.GetComponent<HitableObj>();
@@ -31,6 +36,8 @@ public class HPbarControl : MonoBehaviour
         HpBar.fillAmount = 0;
         //TODO???
         Debug.Log(gameObject.name + "死掉了");
+        endCanvas.SetActive(true);
+
     }
 
 }
