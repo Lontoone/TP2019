@@ -9,14 +9,20 @@ public class BallBehavior : MonoBehaviour
     Vector2 dir;
     public float reflectSpeed = 10;
     public float damage = 5;
+    AudioSource audioSource;
+    int maxTime = 4;
+    public int i = 0;
     private void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         dir = rigid.velocity.normalized;
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        i++;
+
         Vector2 inDirection = dir;
         Vector2 inNormal = collision.contacts[0].normal.normalized;
         Vector2 newVelocity = Vector2.Reflect(inDirection, inNormal);
@@ -31,8 +37,15 @@ public class BallBehavior : MonoBehaviour
 
         HitableObj.Hit_event_c(collision.gameObject, damage);
 
-        GameObject effect=Instantiate(PS, transform.position, transform.rotation);
-        effect.transform.rotation= Quaternion.FromToRotation(effect.transform.up, inNormal) * transform.rotation;
+        GameObject effect = Instantiate(PS, transform.position, transform.rotation);
+        effect.transform.rotation = Quaternion.FromToRotation(effect.transform.up, inNormal) * transform.rotation;
+        Destroy(effect, 1);
+
+        audioSource.Play();
+        if (i >= maxTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
