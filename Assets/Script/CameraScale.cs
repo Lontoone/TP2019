@@ -26,19 +26,26 @@ public class CameraScale : MonoBehaviour
         transform.position = new Vector3(Mathf.Lerp(mainCamera.transform.position.x, playersCenter.x, Time.deltaTime * scaleSpeed),
                                         Mathf.Lerp(mainCamera.transform.position.y, playersCenter.y, Time.deltaTime * scaleSpeed),
                                         playersCenter.z);
-
-    }
-    private void FixedUpdate()
-    {
+        
+        
         //玩家超出最大距離時伸縮
-        Debug.Log(Vector2.Distance(playerA.transform.position, playerB.transform.position));
-        if (Vector2.Distance(playerA.transform.position, playerB.transform.position) > maxDistance)
-        {
-            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, maxScale, Time.deltaTime * scaleSpeed);
-        }
-        else
+        Vector3 viewPos_A = mainCamera.WorldToViewportPoint(playerA.transform.position);
+        Vector3 viewPos_B = mainCamera.WorldToViewportPoint(playerB.transform.position);
+        //if (Vector2.Distance(playerA.transform.position, playerB.transform.position) > maxDistance)
+        Debug.Log(viewPos_A + " " + viewPos_B);
+
+        if (Vector2.Distance(playerA.transform.position, playerB.transform.position) < 10)
         {
             mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, minSacle, Time.deltaTime * scaleSpeed);
         }
+        else if (viewPos_A.x > 0.9f || viewPos_A.y > 0.9f || viewPos_B.x > 0.9f || viewPos_B.y > 0.9f)
+        {
+            //mainCamera.orthographicSize += Time.deltaTime;
+            mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, maxScale, Time.deltaTime * scaleSpeed);
+        }
+    }
+    private void FixedUpdate()
+    {
+
     }
 }

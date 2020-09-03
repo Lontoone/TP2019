@@ -33,6 +33,7 @@ public class BallBehavior : MonoBehaviour
 
         GameObject effect=Instantiate(PS, transform.position, transform.rotation);
         effect.transform.rotation= Quaternion.FromToRotation(effect.transform.up, inNormal) * transform.rotation;
+        Destroy(effect,1);
     }
 
 

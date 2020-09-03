@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkGapTime = 0.2f;
     public float moveGapDistance = 1;
+    public GameObject pointerRing;//集氣方向
     public GameObject chargeEffect;
     GameObject ce;
     bool isCharging = false;
@@ -67,6 +68,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+
+                //旋轉ring
+                var dir = ball.transform.position - center.transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                pointerRing.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
                 if (!isCharging)
                 {
                     isCharging = true;
@@ -123,6 +131,12 @@ public class PlayerMovement : MonoBehaviour
                 powerTime += Time.deltaTime * poewerStoreSpeed;
 
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+
+                //旋轉ring
+                var dir = ball.transform.position - center.transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                pointerRing.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
                 if (!isCharging)
                 {
                     isCharging = true;
