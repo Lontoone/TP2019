@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 velocity = new Vector2();
     public GameObject ball;
-    public GameObject defense; //防護罩
     float powerTime = 0;
     public float poewerStoreSpeed = 5;
     [Range(0.01f, 1)]
@@ -21,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkGapTime = 0.2f;
     public float moveGapDistance = 1;
+    public GameObject pointerRing;//集氣方向
     public GameObject chargeEffect;
     GameObject ce;
     bool isCharging = false;
@@ -68,7 +68,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
-                defense.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+
+                //旋轉ring
+                var dir = ball.transform.position - center.transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                pointerRing.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+
                 if (!isCharging)
                 {
                     isCharging = true;
@@ -79,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                powerTime = Mathf.Clamp(powerTime -= Time.deltaTime, 0, 1);
+                //powerTime = Mathf.Clamp(powerTime -= Time.deltaTime, 0, 1);
             }
             //放手
             if (Input.GetKeyUp(KeyCode.Space))
@@ -89,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.DrawLine(ball.transform.position, dir * 10, Color.red, 1);
                 if (eShoot != null)
                 {
-                    eShoot(ball.transform.position, dir.normalized * powerTime);
+                    eShoot(ball.transform.position, dir.normalized);
 
                 }
                 animator.Play("Attack");
@@ -125,6 +131,12 @@ public class PlayerMovement : MonoBehaviour
                 powerTime += Time.deltaTime * poewerStoreSpeed;
 
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+
+                //旋轉ring
+                var dir = ball.transform.position - center.transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                pointerRing.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
                 if (!isCharging)
                 {
                     isCharging = true;
@@ -137,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                powerTime = Mathf.Clamp(powerTime -= Time.deltaTime, 0, 1);
+                //powerTime = Mathf.Clamp(powerTime -= Time.deltaTime, 0, 1);
             }
             //放手
             if (Input.GetKeyUp(KeyCode.L))

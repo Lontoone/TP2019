@@ -12,12 +12,14 @@ public class HitableObj : MonoBehaviour
     public event Action Die_event;
     public event Action gotHit_event;
     public float HP = 20;
+    float maxHP;
     public bool isDead = false;
     public bool isHitable = true;
 
     private void Start()
     {
         Hit_event += Hit;
+        maxHP = HP;
         //TODO:自動產生血條
     }
     private void OnDestroy()
@@ -32,6 +34,11 @@ public class HitableObj : MonoBehaviour
             Hit_event(t, d);
         }
 
+    }
+
+    public void Heal(float amount)
+    {
+        HP = Mathf.Clamp(HP + amount, 0, maxHP);
     }
 
 

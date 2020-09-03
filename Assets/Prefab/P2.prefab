@@ -72,7 +72,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Time: 0.7
+  m_Time: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -138,6 +138,88 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1 &1196825973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196825974}
+  - component: {fileID: 1196825975}
+  m_Layer: 0
+  m_Name: Pointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1196825974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196825973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.134, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5140111143281708404}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1196825975
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196825973}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 4c4fb7c9e1984c740886b1cac2431ece, type: 3}
+  m_Color: {r: 0.09411764, g: 0.72104025, b: 0.94509804, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.49, y: 0.6}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2818744576643731346
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,9 +305,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8494070014693077831}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Center
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -237,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4042981352037613473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009, y: 0.23, z: -1.0582374}
+  m_LocalPosition: {x: -0.008, y: 0.163, z: -1.0582374}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 5140111143281708404}
@@ -344,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 5140111143022716731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.002, y: 0.141, z: 0}
-  m_LocalScale: {x: 0.3181, y: 0.3181, z: 0.3181}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5140111143281708404}
   m_RootOrder: 0
@@ -356,7 +438,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5140111143022716731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -410,13 +492,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5140111143281708404}
   - component: {fileID: 5140111143281708403}
-  - component: {fileID: 5140111143281708402}
   - component: {fileID: 5140111143281708401}
   - component: {fileID: 5140111143281708400}
   - component: {fileID: 5140111143281708415}
   - component: {fileID: 5140111143281708405}
   - component: {fileID: 8483258893851648893}
   - component: {fileID: -6715840293574576911}
+  - component: {fileID: 6357774905455917060}
   m_Layer: 0
   m_Name: P2
   m_TagString: Untagged
@@ -439,6 +521,7 @@ Transform:
   - {fileID: 620227998774461410}
   - {fileID: 8494070014693077831}
   - {fileID: 585403146}
+  - {fileID: 1196825974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -494,27 +577,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5140111143281708402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5140111143281708414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b5b935b27218c4c915296142d06179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerType: 1
-  ball: {fileID: 5140111143022716731}
-  poewerStoreSpeed: 5
-  ringSize: 0.433
-  walkGapTime: 0.2
-  moveGapDistance: 1
-  chargeEffect: {fileID: 7952958087297766784, guid: 8d98562f6a33284409a011b3adfefae4,
-    type: 3}
-  center: {fileID: 4042981352037613473}
 --- !u!50 &5140111143281708401
 Rigidbody2D:
   serializedVersion: 4
@@ -610,6 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 5783527701899320657, guid: a9aa3235b67f716458c789b9a739d64b, type: 3}
   shootSpeed: 5
+  shootAudio: {fileID: 0}
 --- !u!114 &-6715840293574576911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +687,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endCanvas: {fileID: 0}
   HpBar: {fileID: 7082437272644311238}
+--- !u!114 &6357774905455917060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140111143281708414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d425e22280307d048a30b5b0037f69eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerType: 1
+  ball: {fileID: 5140111143022716731}
+  poewerStoreSpeed: -5
+  ringSize: 0.655
+  walkGapTime: 0.2
+  moveGapDistance: 1
+  pointerRing: {fileID: 1196825973}
+  chargeEffect: {fileID: 7952958087297766784, guid: 8d98562f6a33284409a011b3adfefae4,
+    type: 3}
+  center: {fileID: 4042981352037613473}
 --- !u!1 &5554643345442839267
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class HPbarControl : MonoBehaviour
     }
 
     //更新HP條
-    void UpdateHPbar()
+    public void UpdateHPbar()
     {
         HpBar.fillAmount = hitable.HP / MaxHP;
     }
@@ -37,6 +37,7 @@ public class HPbarControl : MonoBehaviour
         //TODO???
         Debug.Log(gameObject.name + "死掉了");
         endCanvas.SetActive(true);
+        endCanvas.GetComponent<EndUI>().End(gameObject.name);
 
     }
 

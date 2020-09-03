@@ -6,7 +6,7 @@ public class StartButton : MonoBehaviour
 {
     public void OnLoginButtonClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("CutScene");
     }
     // Start is called before the first frame update
     void Start()
