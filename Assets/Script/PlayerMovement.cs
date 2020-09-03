@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 velocity = new Vector2();
     public GameObject ball;
+    public GameObject defense; //防護罩
     float powerTime = 0;
     public float poewerStoreSpeed = 5;
     [Range(0.01f, 1)]
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 powerTime += Time.deltaTime * poewerStoreSpeed;
                 ball.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
+                defense.transform.localPosition = new Vector2(Mathf.Cos(powerTime) * ringSize, Mathf.Sin(powerTime) * ringSize) + (Vector2)center.transform.localPosition;
                 if (!isCharging)
                 {
                     isCharging = true;
